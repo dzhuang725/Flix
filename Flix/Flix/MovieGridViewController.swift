@@ -66,14 +66,26 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         return cell
     }
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     override func prepare(for seque: UIStoryboardSegue, sender: Any?){
+         // Get the new view controller using seque.destination.
+         // Pass the selected object to the new view controller.
+         
+         print("Loading up the details screen")
+         
+         // Find the selected movie
+         let cell = sender as! UICollectionViewCell
+         let indexPath = collectionView.indexPath(for: cell)!
+         let movie = movies[indexPath.row]
+         
+         // Pass the selected movie to the details view controller
+         let gridDetailsViewController = seque.destination as! MovieGridDetailViewController
+         gridDetailsViewController.movie = movie
+         
+         //collectionView.deselectRow(at: indexPath, animated: true)
+     }
+    
 
 }
